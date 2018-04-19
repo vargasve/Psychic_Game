@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en-us"<
+<head>
+    <meta charset="UTF-8">
+    <title>Psychic Game!</title>
+</head>
+<body>
+  <h1>The Psychic Game</h1>  
+
+  <div id="game">
+      <p>Guess a letter to begin!</p>
+  </div>
+
+<script type="text/javascript">
+    //Create variables
+    var wins = 0;
+    var losses = 0;
+    var guessesLeft = 8;
+    var guesses = [];
+
+    //Create an array of choices for comp to guess from
+    var compChoices = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p","q", "r", "s", "t", "u", "v", "w","x", "y","z"]
+    
+    //Gives app the ability to read key strokes from user
+    document.onkeyup = function(event) {
+        //console.log(event.keyCode);
+
+    // Determines which key was pressed
+    var userGuess = event.key;
+
+    // Randomly chooses from the options in compChoices[], generating 
+    var compGuess = compChoices[Math.floor(Math.random() * compChoices.length)];
+
+    if( userGuess != compGuess && guessesLeft != 0){
+        guessesLeft--;
+        guesses.push(userGuess);
+    }
+    else if( userGuess == compGuess){
+        wins++;
+        guesses = [];
+        guessesLeft = 8;
+    }
+    else {
+        losses++;
+        guesses = [];
+        guessesLeft = 8;
+    }
+
+        
+        var html =
+          "Guess what letter I'm thinking of!" +
+          "<p>Wins: " + wins + "</p>" +
+          "<p>Losses: " + losses + "</p>" +
+          "<p>Guesses Left: " + guessesLeft + "</p>" +
+          "<p>Your Guesses So Far: " + guesses + "</p>";
+
+
+    //Prints html variable to screen by calling id
+    document.querySelector("#game").innerHTML = html;
+
+        
+};
+
+
+
+</script>
+</body>
+
+</html>
